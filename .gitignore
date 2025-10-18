@@ -1,0 +1,41 @@
+# Logs
+logs/
+*.log
+
+# Backup files
+*_backup_*.html
+*_backup_*.js
+*_WORKING.*
+*_standalone.*
+
+# Test files
+TEST_*.html
+test_live_site.html
+test_logging.php
+check_setup.php
+
+# Development documentation (superseded by FINAL_DEPLOYMENT.md)
+DEPLOY_INSTRUCTIONS.md
+DEPLOY_NOW.md
+IMPLEMENTATION_NOTES.md
+SIMPLE_TEST.md
+URGENT_FIX.md
+
+# Old script files
+script_backup_*.js
+script.js
+script_SIMPLE.js
+
+# Original files directory
+original/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
