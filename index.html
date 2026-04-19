@@ -236,7 +236,7 @@
                 btn.addEventListener('click', function () { submitMode = btn.dataset.mode || 'whatsapp'; });
             });
 
-            form.addEventListener('submit', function (e) {
+            form.addEventListener('submit', async function (e) {
                 e.preventDefault();
                 if (!form.checkValidity()) { form.reportValidity(); return; }
 
@@ -244,26 +244,52 @@
                 var payload = {};
                 fd.forEach(function (v, k) { payload[k] = v.toString().trim(); });
 
-                // Backend: Datei-Log + Google Sheet (nicht blockierend)
-                fetch('submit_form.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                }).then(function (r) { return r.json(); })
-                  .then(function (res) { console.log('submit_form:', res); })
-                  .catch(function (err) { console.log('submit_form error:', err); });
+                var submitButtons = form.querySelectorAll('button[type="submit"]');
+                submitButtons.forEach(function (b) { b.disabled = true; });
+
+                try {
+                    var res = await postWithRetry(payload);
+                    if (!res || res.success !== true || res.sheet_status !== 'ok') {
+                        var detail = (res && res.sheet_error) ? res.sheet_error : 'unbekannter Fehler';
+                        alert('Achtung: Die Anmeldung konnte nicht ins Google-Sheet geschrieben werden.\n\n(' + detail + ')\n\nBitte melde dich zusaetzlich direkt bei Isabel — 079 884 5211.');
+                    }
+                } catch (err) {
+                    console.log('submit_form error:', err);
+                    alert('Achtung: Die Anmeldung konnte gerade nicht gespeichert werden (Serverfehler). Bitte versuche es in 10 Sekunden nochmals, oder melde dich direkt bei Isabel — 079 884 5211.');
+                    submitButtons.forEach(function (b) { b.disabled = false; });
+                    return;
+                }
 
                 var msg = buildMessage(payload);
-
                 if (submitMode === 'email') {
                     openEmailDialog(msg);
                 } else {
                     var url = 'https://wa.me/41798845211?text=' + encodeURIComponent(msg);
                     window.open(url, '_blank');
-                    alert('WhatsApp wird geöffnet. Bitte sende die Nachricht an Isabel ab.');
+                    alert('Anmeldung gespeichert. WhatsApp wird geöffnet — bitte sende die Nachricht an Isabel ab.');
                     form.reset();
                 }
+                submitButtons.forEach(function (b) { b.disabled = false; });
             });
+
+            async function postWithRetry(payload) {
+                var lastErr;
+                for (var attempt = 0; attempt < 2; attempt++) {
+                    try {
+                        var r = await fetch('submit_form.php', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        if (!r.ok) throw new Error('HTTP ' + r.status);
+                        return await r.json();
+                    } catch (e) {
+                        lastErr = e;
+                        if (attempt === 0) await new Promise(function (res) { setTimeout(res, 2000); });
+                    }
+                }
+                throw lastErr;
+            }
 
             function buildMessage(p) {
                 var birth = p['birthdate'];
