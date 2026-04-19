@@ -223,8 +223,39 @@ body {
     text-align: left;
 }
 
+.form-fieldset {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    padding: 20px 24px 6px;
+    margin: 0 0 24px;
+}
+
+.form-fieldset legend {
+    color: white;
+    font-weight: 600;
+    padding: 0 8px;
+    font-size: 17px;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.form-row .form-group {
+    flex: 1 1 180px;
+}
+
+.form-hint {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    margin-top: 12px;
+    text-align: center;
+}
+
 .form-group {
-    margin-bottom: 30px;
+    margin-bottom: 22px;
 }
 
 .form-group label {
@@ -288,6 +319,115 @@ body {
 .submit-button:hover {
     background: #222;
 }
+
+.submit-button-alt {
+    background: transparent;
+    border: 2px solid white;
+    margin-top: 12px;
+}
+
+.submit-button-alt:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Email-Dialog */
+.email-dialog {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.email-dialog[hidden] { display: none; }
+
+.email-dialog-inner {
+    background: white;
+    color: #333;
+    border-radius: 10px;
+    padding: 28px;
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.email-dialog-inner h3 {
+    margin: 0 0 12px;
+    color: #333;
+}
+
+.email-dialog-field {
+    margin-bottom: 14px;
+}
+
+.email-dialog-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.email-dialog-field input,
+.email-dialog-field textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: inherit;
+    box-sizing: border-box;
+    background: #f8f8f8;
+    color: #333;
+}
+
+.email-dialog-field textarea {
+    resize: vertical;
+    line-height: 1.45;
+    white-space: pre-wrap;
+}
+
+.email-dialog-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.email-btn {
+    flex: 1 1 140px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    background: #45B7A8;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.email-btn:hover { background: #3aa194; }
+
+.email-btn-alt {
+    background: #555;
+}
+.email-btn-alt:hover { background: #444; }
+
+.email-btn-close {
+    background: #e5e5e5;
+    color: #333;
+}
+.email-btn-close:hover { background: #d0d0d0; }
 
 /* Contact Section */
 .contact-section {

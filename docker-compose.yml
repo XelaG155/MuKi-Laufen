@@ -1,0 +1,23 @@
+services:
+  muki-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: muki-web:latest
+    container_name: muki-web
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8086:80"
+    environment:
+      GOOGLE_SHEETS_KEY: /run/secrets/google-sheets-key.json
+      GOOGLE_SHEETS_ID:  1N9Q_VkVhrVbLRpZIiZDVfeq-Y55pgyP4piTCVZWKGS0
+    volumes:
+      # Persistent logs (ausserhalb Image)
+      - /mnt/data_disk/muki-laufen/logs:/var/www/html/logs
+      # Service-Account-Key read-only
+      - /home/alexgiss/.secrets/muki-sheets.json:/run/secrets/google-sheets-key.json:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3

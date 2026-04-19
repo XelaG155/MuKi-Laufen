@@ -78,39 +78,78 @@
                 <h3>START am 25.08.26</h3>
                 <p>Wenn du Fragen zu mir oder meinem Kurs hast, kontaktiere mich einfach.</p>
 
-                <form id="mukiForm">
-                    <div class="form-group">
-                        <label for="parent-name">Mami oder Papi (Name und Vorname) *</label>
-                        <input type="text" id="parent-name" name="parent-name" placeholder="Namen eingeben" required>
-                    </div>
+                <form id="mukiForm" novalidate>
+                    <fieldset class="form-fieldset">
+                        <legend>Mami oder Papi</legend>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="parent-nachname">Nachname *</label>
+                                <input type="text" id="parent-nachname" name="parent-nachname" autocomplete="family-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="parent-vorname">Vorname *</label>
+                                <input type="text" id="parent-vorname" name="parent-vorname" autocomplete="given-name" required>
+                            </div>
+                        </div>
+                    </fieldset>
 
-                    <div class="form-group">
-                        <label for="address">Adresse</label>
-                        <input type="text" id="address" name="address" placeholder="Adresse eingeben...">
-                    </div>
+                    <fieldset class="form-fieldset">
+                        <legend>Adresse</legend>
+                        <div class="form-group">
+                            <label for="address-strasse">Strasse und Nr. *</label>
+                            <input type="text" id="address-strasse" name="address-strasse" autocomplete="street-address" placeholder="z.B. Hauptstrasse 12" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address-plz-ort">PLZ und Ort *</label>
+                            <input type="text" id="address-plz-ort" name="address-plz-ort" autocomplete="postal-code" placeholder="z.B. 4242 Laufen" required>
+                        </div>
+                    </fieldset>
 
-                    <div class="form-group">
-                        <label for="email">E-Mail-Adresse *</label>
-                        <input type="email" id="email" name="email" placeholder="E-Mail-Adresse eingeben" required>
-                    </div>
+                    <fieldset class="form-fieldset">
+                        <legend>Kontakt</legend>
+                        <div class="form-group">
+                            <label for="mobile">Mobile Nummer *</label>
+                            <input type="tel" id="mobile" name="mobile" autocomplete="tel" placeholder="z.B. 079 123 45 67" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail-Adresse *</label>
+                            <input type="email" id="email" name="email" autocomplete="email" placeholder="E-Mail-Adresse eingeben" required>
+                        </div>
+                    </fieldset>
 
-                    <div class="form-group">
-                        <label for="child-name">Kind (Name und Vorname) *</label>
-                        <input type="text" id="child-name" name="child-name" required>
-                    </div>
+                    <fieldset class="form-fieldset">
+                        <legend>Kind</legend>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="child-nachname">Nachname *</label>
+                                <input type="text" id="child-nachname" name="child-nachname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="child-vorname">Vorname *</label>
+                                <input type="text" id="child-vorname" name="child-vorname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Geschlecht *</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="M" required>
+                                    Mädchen (M)
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="K" required>
+                                    Knabe (K)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthdate">Geburtsdatum *</label>
+                            <input type="date" id="birthdate" name="birthdate" required>
+                        </div>
+                    </fieldset>
 
-                    <div class="form-group">
-                        <label for="gender">Geschlecht *</label>
-                        <input type="text" id="gender" name="gender" placeholder="Geschlecht eingeben (Mädchen oder Knabe)" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="birthdate">Geburtsdatum (Kind) *</label>
-                        <input type="date" id="birthdate" name="birthdate" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Wähle deine Lektion aus *</label>
+                    <fieldset class="form-fieldset">
+                        <legend>Lektion *</legend>
                         <div class="radio-group">
                             <label class="radio-label">
                                 <input type="radio" name="time-slot" value="9:10 - 10:00" required>
@@ -121,10 +160,37 @@
                                 10.10 Uhr bis 11.00 Uhr
                             </label>
                         </div>
-                    </div>
+                    </fieldset>
 
-                    <button type="submit" class="submit-button">Per WhatsApp an Isabel senden</button>
+                    <button type="submit" class="submit-button" data-mode="whatsapp">Per WhatsApp an Isabel senden</button>
+                    <button type="submit" class="submit-button submit-button-alt" data-mode="email">Kein WhatsApp? Text für E-Mail anzeigen</button>
+                    <p class="form-hint">Deine Daten werden nur zur Anmeldung verwendet.</p>
                 </form>
+
+                <!-- Email-Text-Dialog (hidden by default) -->
+                <div id="emailDialog" class="email-dialog" hidden>
+                    <div class="email-dialog-inner" role="dialog" aria-modal="true" aria-labelledby="emailDialogTitle">
+                        <h3 id="emailDialogTitle">Text für E-Mail an Isabel</h3>
+                        <p>Bitte sende diesen Text an <strong>isagiss@gmail.com</strong>:</p>
+                        <div class="email-dialog-field">
+                            <label>Empfänger</label>
+                            <input type="text" id="emailDialogTo" value="isagiss@gmail.com" readonly>
+                        </div>
+                        <div class="email-dialog-field">
+                            <label>Betreff</label>
+                            <input type="text" id="emailDialogSubject" readonly>
+                        </div>
+                        <div class="email-dialog-field">
+                            <label>Nachricht</label>
+                            <textarea id="emailDialogBody" rows="11" readonly></textarea>
+                        </div>
+                        <div class="email-dialog-actions">
+                            <button type="button" id="emailDialogCopy" class="email-btn">Text kopieren</button>
+                            <a id="emailDialogMailto" class="email-btn email-btn-alt" target="_blank" rel="noopener">E-Mail-App öffnen</a>
+                            <button type="button" id="emailDialogClose" class="email-btn email-btn-close">Schliessen</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -149,79 +215,112 @@
         </div>
     </footer>
 
-    <!-- ULTRA-SIMPLE WHATSAPP SCRIPT WITH LOGGING -->
     <script>
-        // Log page access
-        (function() {
+        (function () {
+            // Page-access tracking (1x1 GIF)
             var img = new Image();
             img.src = 'log_access.php?page=' + encodeURIComponent(window.location.pathname);
-        })();
 
-        // Form submission
-        document.getElementById('mukiForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+            var form = document.getElementById('mukiForm');
+            var dialog = document.getElementById('emailDialog');
+            var dlgSubject = document.getElementById('emailDialogSubject');
+            var dlgBody = document.getElementById('emailDialogBody');
+            var dlgCopy = document.getElementById('emailDialogCopy');
+            var dlgClose = document.getElementById('emailDialogClose');
+            var dlgMailto = document.getElementById('emailDialogMailto');
 
-            // Get form values
-            var parentName = document.getElementById('parent-name').value;
-            var address = document.getElementById('address').value;
-            var email = document.getElementById('email').value;
-            var childName = document.getElementById('child-name').value;
-            var gender = document.getElementById('gender').value;
-            var birthdate = document.getElementById('birthdate').value;
+            var submitMode = 'whatsapp';
 
-            // Get selected time slot
-            var timeSlot = '';
-            var radioButtons = document.getElementsByName('time-slot');
-            for (var i = 0; i < radioButtons.length; i++) {
-                if (radioButtons[i].checked) {
-                    timeSlot = radioButtons[i].value;
-                    break;
-                }
-            }
-
-            // Prepare form data for logging
-            var formData = {
-                'parent-name': parentName,
-                'address': address,
-                'email': email,
-                'child-name': childName,
-                'gender': gender,
-                'birthdate': birthdate,
-                'time-slot': timeSlot
-            };
-
-            // Send to backend for logging (non-blocking)
-            fetch('submit_form.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            }).catch(function(error) {
-                console.log('Logging error (non-critical):', error);
+            // Button merkt sich gewaehlten Modus (WhatsApp vs Email)
+            form.querySelectorAll('button[type="submit"]').forEach(function (btn) {
+                btn.addEventListener('click', function () { submitMode = btn.dataset.mode || 'whatsapp'; });
             });
 
-            // Build WhatsApp message
-            var message = '🎵 NEUE MuKi ANMELDUNG\n\n';
-            message += 'Name Eltern: ' + parentName + '\n';
-            message += 'E-Mail: ' + email + '\n';
-            if (address) message += 'Adresse: ' + address + '\n';
-            message += '\nKind: ' + childName + '\n';
-            message += 'Geschlecht: ' + gender + '\n';
-            message += 'Geburtsdatum: ' + birthdate + '\n';
-            message += 'Zeitfenster: ' + timeSlot + '\n\n';
-            message += 'Datum: ' + new Date().toLocaleString('de-CH');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (!form.checkValidity()) { form.reportValidity(); return; }
 
-            // Open WhatsApp
-            var whatsappUrl = 'https://wa.me/41798845211?text=' + encodeURIComponent(message);
-            window.open(whatsappUrl, '_blank');
+                var fd = new FormData(form);
+                var payload = {};
+                fd.forEach(function (v, k) { payload[k] = v.toString().trim(); });
 
-            // Show success message
-            alert('✅ WhatsApp wird geöffnet!\n\nBitte senden Sie die Nachricht an Isabel.');
+                // Backend: Datei-Log + Google Sheet (nicht blockierend)
+                fetch('submit_form.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).then(function (r) { return r.json(); })
+                  .then(function (res) { console.log('submit_form:', res); })
+                  .catch(function (err) { console.log('submit_form error:', err); });
 
-            // Reset form
-            this.reset();
-        });
+                var msg = buildMessage(payload);
+
+                if (submitMode === 'email') {
+                    openEmailDialog(msg);
+                } else {
+                    var url = 'https://wa.me/41798845211?text=' + encodeURIComponent(msg);
+                    window.open(url, '_blank');
+                    alert('WhatsApp wird geöffnet. Bitte sende die Nachricht an Isabel ab.');
+                    form.reset();
+                }
+            });
+
+            function buildMessage(p) {
+                var birth = p['birthdate'];
+                if (birth && /^\d{4}-\d{2}-\d{2}$/.test(birth)) {
+                    var x = birth.split('-'); birth = x[2] + '.' + x[1] + '.' + x[0];
+                }
+                var g = p['gender'] === 'M' ? 'Mädchen' : (p['gender'] === 'K' ? 'Knabe' : '');
+                var m = 'Neue MuKi-Anmeldung\n\n';
+                m += 'Eltern: '       + p['parent-vorname']  + ' ' + p['parent-nachname'] + '\n';
+                m += 'Adresse: '      + p['address-strasse'] + ', ' + p['address-plz-ort'] + '\n';
+                m += 'Mobile: '       + p['mobile'] + '\n';
+                m += 'E-Mail: '       + p['email']  + '\n\n';
+                m += 'Kind: '         + p['child-vorname']   + ' ' + p['child-nachname']  + '\n';
+                m += 'Geschlecht: '   + g + '\n';
+                m += 'Geburtsdatum: ' + birth + '\n';
+                m += 'Lektion: '      + p['time-slot'] + '\n';
+                return m;
+            }
+
+            function openEmailDialog(msg) {
+                var subject = 'MuKi-Anmeldung';
+                dlgSubject.value = subject;
+                dlgBody.value = msg;
+                dlgMailto.href = 'mailto:isagiss@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(msg);
+                dialog.hidden = false;
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeEmailDialog() {
+                dialog.hidden = true;
+                document.body.style.overflow = '';
+                form.reset();
+            }
+
+            dlgClose.addEventListener('click', closeEmailDialog);
+            dialog.addEventListener('click', function (e) { if (e.target === dialog) closeEmailDialog(); });
+            document.addEventListener('keydown', function (e) { if (!dialog.hidden && e.key === 'Escape') closeEmailDialog(); });
+
+            dlgCopy.addEventListener('click', function () {
+                var text = dlgBody.value;
+                var done = function () {
+                    dlgCopy.textContent = 'Kopiert ✓';
+                    setTimeout(function () { dlgCopy.textContent = 'Text kopieren'; }, 1800);
+                };
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+                } else {
+                    fallbackCopy(text); done();
+                }
+            });
+
+            function fallbackCopy(text) {
+                dlgBody.select();
+                try { document.execCommand('copy'); } catch (e) {}
+                dlgBody.blur();
+            }
+        })();
     </script>
 </body>
 </html>
