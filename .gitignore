@@ -40,6 +40,12 @@ original/
 .DS_Store
 Thumbs.db
 
+# Node / Playwright (nur fuer lokale Screenshot-Tools, gehoeren nicht ins Repo)
+node_modules/
+package.json
+package-lock.json
+capture-shots.js
+
 # Credentials — NEVER commit
 muki-form-writer-key.json
 *-service-account*.json
