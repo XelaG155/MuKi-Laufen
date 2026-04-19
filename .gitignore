@@ -39,3 +39,14 @@ original/
 # OS
 .DS_Store
 Thumbs.db
+
+# Credentials — NEVER commit
+muki-form-writer-key.json
+*-service-account*.json
+credentials/
+.secrets/
+SERVICE_ACCOUNT_INFO.md
+
+# Local debug / one-shot migration scripts
+test_sheets_*.php
+migrate_*.php
