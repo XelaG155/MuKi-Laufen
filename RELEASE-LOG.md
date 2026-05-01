@@ -8,6 +8,9 @@ Versionsnummer steht im Footer aller Seiten (`<p class="version-number">`) und m
 
 ---
 
+## v1.2 — 2026-05-01
+- „:)" hinter „Turnen macht glücklich" durch Sonnenblumen-Emoji 🌻 ersetzt (alle 5 Seiten + meta-description)
+
 ## v1.1 — 2026-05-01
 
 **Cache-Strategie etabliert:**
