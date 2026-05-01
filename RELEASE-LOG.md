@@ -9,6 +9,13 @@ Versionsnummer steht im Footer aller Seiten (`<p class="version-number">`) und m
 ---
 
 ## v1.1 — 2026-05-01
+
+**Cache-Strategie etabliert:**
+- HTML wird nie gecached (`Cache-Control: no-store, no-cache, must-revalidate`) — Browser holt immer die neuste Fassung
+- CSS / JS bleiben 1 Jahr cached, aber URLs sind versions-stamped (`styles.css?v=1.1`)
+- Beim naechsten Release einfach Versionsnummer in Footer + Asset-URLs in allen 5 HTMLs hochzaehlen → automatischer Cache-Bust ohne Hard-Refresh
+
+**Aenderungen:**
 - Hamburger-Menue (drei Linien) fuer Mobile <=768px in allen 5 Seiten via `nav.js`
 - Subtitle „Zufriedene Kinder machen glueckliche Eltern" entfernt (alle Seiten + meta-description)
 - Doppelter `<h2>MuKi-Turnen Laufen</h2>` aus Content-Block (index) entfernt
