@@ -173,7 +173,7 @@ body {
 .content-block {
     background: #4ECDC4;
     color: white;
-    padding: 60px 0 30px;
+    padding: 60px 0 10px;
 }
 
 .content-block h2 {
@@ -191,12 +191,16 @@ body {
 }
 
 .course-info {
-    margin: 40px 0;
+    margin: 40px 0 0;
 }
 
 .course-info p {
     font-size: 18px;
     margin-bottom: 15px;
+}
+
+.course-info p:last-child {
+    margin-bottom: 0;
 }
 
 .course-info strong {
@@ -226,7 +230,7 @@ body {
 /* Registration Section */
 .registration-section {
     background: #4ECDC4;
-    padding: 30px 0 80px;
+    padding: 20px 0 80px;
     text-align: center;
 }
 
@@ -638,6 +642,13 @@ body {
     margin-bottom: 5px;
 }
 
+.site-footer .version-number {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #aaa;
+    letter-spacing: 0.5px;
+}
+
 /* Page Styles for Sub-pages */
 .page-title-section {
     text-align: center;
@@ -987,6 +998,8 @@ body {
     .nav-toggle {
         display: flex;
         margin-left: auto;
+        flex-shrink: 0;
+        z-index: 10;
     }
 
     .main-title {
@@ -1011,7 +1024,18 @@ body {
 
     .logo-section {
         text-align: left;
-        flex: 1 1 auto;
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .logo {
+        width: 56px;
+        height: 56px;
+        flex-shrink: 0;
+    }
+
+    .logo-text h1 {
+        font-size: 18px;
     }
 
     .main-nav {
@@ -1048,12 +1072,8 @@ body {
     }
 
     .zeit-break-mobile {
-        display: inline;
+        display: block;
     }
-}
-
-.zeit-break-mobile {
-    display: none;
 }
 
 @media (max-width: 480px) {
