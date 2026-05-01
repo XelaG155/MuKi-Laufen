@@ -8,6 +8,9 @@ Versionsnummer steht im Footer aller Seiten (`<p class="version-number">`) und m
 
 ---
 
+## v1.4 — 2026-05-01
+- Startseite: Intro-Text + Kurs-Infos in weisse Card-Box (gleicher Stil wie `.song-card` auf „Unsere Lieder") — mit Tuerkis-Akzent links und sanftem Schatten
+
 ## v1.3 — 2026-05-01
 - Abstand zwischen Header und Seitentitel auf Sub-Seiten reduziert (margin-top 90px → 0, padding 40px → 20px)
 - „Teilnahmebedingungen" bricht auf schmalen Screens via Soft-Hyphen (`&shy;`) sauber um → „Teilnahme-/bedingungen", verhindert horizontalen Scroll auf dem Handy
