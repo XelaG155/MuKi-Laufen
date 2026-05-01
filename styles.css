@@ -652,9 +652,9 @@ body {
 /* Page Styles for Sub-pages */
 .page-title-section {
     text-align: center;
-    padding: 40px 0;
+    padding: 20px 0;
     background: white;
-    margin-top: 90px;
+    margin-top: 0;
 }
 
 .page-title {
@@ -662,6 +662,8 @@ body {
     color: #4ECDC4;
     font-weight: 300;
     margin: 0;
+    hyphens: manual;
+    -webkit-hyphens: manual;
 }
 
 /* Content Section */

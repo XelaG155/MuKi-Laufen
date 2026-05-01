@@ -8,6 +8,10 @@ Versionsnummer steht im Footer aller Seiten (`<p class="version-number">`) und m
 
 ---
 
+## v1.3 — 2026-05-01
+- Abstand zwischen Header und Seitentitel auf Sub-Seiten reduziert (margin-top 90px → 0, padding 40px → 20px)
+- „Teilnahmebedingungen" bricht auf schmalen Screens via Soft-Hyphen (`&shy;`) sauber um → „Teilnahme-/bedingungen", verhindert horizontalen Scroll auf dem Handy
+
 ## v1.2 — 2026-05-01
 - „:)" hinter „Turnen macht glücklich" durch Sonnenblumen-Emoji 🌻 ersetzt (alle 5 Seiten + meta-description)
 
