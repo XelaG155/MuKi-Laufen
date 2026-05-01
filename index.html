@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start | MuKi-Turnen Laufen</title>
-    <meta name="description" content="Turnen macht glücklich :) Zufriedene Kinder machen glückliche Eltern">
+    <meta name="description" content="MuKi-Turnen Laufen — Turnen macht glücklich :)">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,11 +20,14 @@
                     <div class="logo-text">
                         <h1>MuKi-Turnen Laufen</h1>
                         <p>Turnen macht glücklich :)</p>
-                        <p class="subtitle">Zufriedene Kinder machen glückliche Eltern</p>
                     </div>
                 </div>
 
-                <nav class="main-nav">
+                <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="primary-nav">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <nav class="main-nav" id="primary-nav">
                     <ul>
                         <li><a href="index.html" class="active">Start</a></li>
                         <li><a href="unsere-lieder.html">Unsere Lieder</a></li>
@@ -53,15 +56,14 @@
         <!-- Turquoise Content Block -->
         <section class="content-block">
             <div class="container">
-                <h2>MuKi-Turnen Laufen</h2>
                 <p>Durch vielseitige, abwechslungsreiche Erlebnislektionen die Freude an der Bewegung bei Kindern und Erwachsenen wecken, fördern und erhalten. Das ist das oberste Ziel des Muki-Turnens. Kleine Kinder und Erwachsene spielen, probieren, entdecken, erfinden, erfahren, erleben und bewegen sich freudvoll miteinander.</p>
 
                 <p>Den Eltern möchten wir bewusst machen, dass eine besonders liebevolle Zuwendung und die Förderung körperlicher Aktivitäten grundlegend zur frühkindlichen Entwicklung beitragen. Die Bewegung unterstützt die Gesamtentwicklung des Kindes positiv.</p>
 
                 <div class="course-info">
                     <p><strong>Preis:</strong> Semester 80 CHF</p>
-                    <p><strong>Ort:</strong> In der Turnhalle Primarschule Serafin in Laufen</p>
-                    <p><strong>Zeit:</strong> jeweils Dienstags von 9.10 - 10 und von 10.10 - 11 Uhr</p>
+                    <p><strong>Ort:</strong> In der Turnhalle Primarschule Serafin</p>
+                    <p><strong>Zeit:</strong> jeweils Dienstags von 9.10 - 10 <br class="zeit-break-mobile">und von 10.10 - 11 Uhr</p>
                 </div>
 
             </div>
@@ -231,6 +233,7 @@
         </div>
     </footer>
 
+    <script src="nav.js" defer></script>
     <script>
         (function () {
             // Page-access tracking (1x1 GIF)
